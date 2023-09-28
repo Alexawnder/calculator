@@ -7,6 +7,11 @@
 }
 
 
+.result-numbers{
+    font-size: 32px;
+    right: 0;
+}
+
 .add-sign, .minus-sign, .multiply-sign, .equal-sign, .divide-sign{
     display: flex;
     background-color: black;

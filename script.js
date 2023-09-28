@@ -5,6 +5,7 @@ var number1 = null;
 var number2 = null;
 var sign = null;
 var shownEquation = null;
+var repeat = false;
 
 function clearOut(){
     document.getElementById("result").innerHTML = '';
@@ -17,7 +18,9 @@ function equal(){
     calculate(sign);
     number1 = equation;
     number2 = null;
+    sign = null;
     document.getElementById("result").innerHTML = equation;
+    count = true;
 }
 
 function showNumber(number){
@@ -25,6 +28,9 @@ function showNumber(number){
         number1 = number;
         document.getElementById("result").innerHTML = number;
     } else if(sign == null){
+        if(repeat){
+            clearOut();
+        }
         number1 = (number1*10)+number;
         document.getElementById("result").innerHTML = number1;
     } else{
@@ -41,22 +47,26 @@ function showNumber(number){
 function showSign(signType){
     
     document.getElementById("result").innerHTML = sign;
+    if(number1 == null){
+        document.getElementById("result").innerHTML = "Input a number first.";
+        return;
+    }
     if(signType == "add"){  
         sign = "+";
-        document.getElementById("result").innerHTML = number1 + "+";
-        shownEquation = number1 + "+";
+        document.getElementById("result").innerHTML = number1 + " +";
+        shownEquation = number1 + " + ";
     } else if(signType == "minus"){
         sign = "-";
-        document.getElementById("result").innerHTML = number1 + "-";
-        shownEquation = number1 + "-";
+        document.getElementById("result").innerHTML = number1 + " -";
+        shownEquation = number1 + " - ";
     } else if(signType == "multiply"){
         sign = "*";
-        document.getElementById("result").innerHTML = number1 + "*";
-        shownEquation = number1 + "*";
+        document.getElementById("result").innerHTML = number1 + " *";
+        shownEquation = number1 + " * ";
     } else if(signType == "divide"){
         sign = "/";
-        document.getElementById("result").innerHTML = number1 + "/";
-        shownEquation = number1 + "/";
+        document.getElementById("result").innerHTML = number1 + " /";
+        shownEquation = number1 + " / ";
     }
 }
 
