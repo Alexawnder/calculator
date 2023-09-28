@@ -4,7 +4,6 @@ var equation = 0;
 var number1 = null;
 var number2 = null;
 var sign = null;
-var shownEquation = null;
 var repeat = false;
 
 function clearOut(){
@@ -13,7 +12,7 @@ function clearOut(){
     number2 = null;
     sign = null;
     equation = '';
-    shownEquation =  '';
+    repeat = false;
 }
 
 function equal(){
@@ -22,7 +21,7 @@ function equal(){
     number2 = null;
     sign = null;
     document.getElementById("result").innerHTML = equation;
-    count = true;
+    repeat = true;
 }
 
 function showNumber(number){
@@ -32,22 +31,25 @@ function showNumber(number){
     } else if(sign == null){
         if(repeat){
             clearOut();
+            number1 = (number1*10)+number;
+            document.getElementById("result").innerHTML = number1;
+            return;
         }
         number1 = (number1*10)+number;
         document.getElementById("result").innerHTML = number1;
     } else{
         if(number2 == null){
             number2 = number;
-            document.getElementById("result").innerHTML = shownEquation + number2;
+            document.getElementById("result").innerHTML = number1 + " " + sign + " " + number2;
         } else {
             number2 = (number2*10) + number;
-            document.getElementById("result").innerHTML = shownEquation + number2;
+            document.getElementById("result").innerHTML = number1 + " " + sign + " " + number2;
         }
     }
 }
 
 function showSign(signType){
-    secondNumber = 0;
+    number2 = 0;
     document.getElementById("result").innerHTML = sign;
     if(number1 == null){
         document.getElementById("result").innerHTML = "Input a number first.";
@@ -56,19 +58,19 @@ function showSign(signType){
     if(signType == "add"){  
         sign = "+";
         document.getElementById("result").innerHTML = number1 + " +";
-        shownEquation = number1 + " + ";
+
     } else if(signType == "minus"){
         sign = "-";
         document.getElementById("result").innerHTML = number1 + " -";
-        shownEquation = number1 + " - ";
+    
     } else if(signType == "multiply"){
         sign = "*";
         document.getElementById("result").innerHTML = number1 + " *";
-        shownEquation = number1 + " * ";
+    
     } else if(signType == "divide"){
         sign = "/";
         document.getElementById("result").innerHTML = number1 + " /";
-        shownEquation = number1 + " / ";
+    
     }
 }
 
