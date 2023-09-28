@@ -6,6 +6,10 @@ var number2 = null;
 var sign = null;
 var repeat = false;
 
+document.addEventListener('keydown', (event) => {
+    console.log(event)
+})
+
 function clearOut(){
     document.getElementById("result").innerHTML = '';
     number1 = null;
